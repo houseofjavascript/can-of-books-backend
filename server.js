@@ -8,7 +8,7 @@ const app = express();
 
 // *** Require in our model ****
 
-const Books = require();
+const Books = require('./Models/books');
 
 // ** Middleware **
 app.use(cors());
@@ -24,7 +24,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('Mongoose is connected');
-
+})
 const PORT = process.env.PORT || 3001;
 
 app.get('/test', (request, response) => {
@@ -41,12 +41,12 @@ app.get('/', (request, response) => {
 
 // ***** ENDPOINT TO GET ALL THE CATS FROM MY DATABASE *****
 
-app.get('/cats', getCats);
+app.get('/books', getBooks);
 
-async function getCats(request, response, next){
-{
+async function getBooks(request, response, next) {
+
   try {
-    let allBooks = await Cat.find({}); 
+    let allBooks = await Books.find({});
     // Model.find({}) - gets all the docs from the database
 
     response.status(200).send(allBooks);
