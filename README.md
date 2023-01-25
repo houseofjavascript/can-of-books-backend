@@ -12,15 +12,15 @@ Clone this repo to your own account with the green "Use this template" button. T
 
 
 
-Name of feature: ________________________________
+Name of feature: _________delete and post_______________________
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: ___2 hours__
 
-Start time: _____
+Start time: __4pm___
 
-Finish time: _____
+Finish time: ___7pm__
 
-Actual time needed to complete: _____
+Actual time needed to complete: ___3 hours__
 
 
 # Project Name
@@ -31,19 +31,26 @@ Actual time needed to complete: _____
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
+configuring back end for deleting and post options for front end
+
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
+
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+using mongo database connected to our back end server to allow request from end to delete objects within mongo db, 
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
+
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+succesfully can delete items by id
 
 ## Estimates
 <!-- See below -->
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
