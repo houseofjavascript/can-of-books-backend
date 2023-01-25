@@ -96,6 +96,23 @@ async function deleteBooks(request, response, next) {
   }
 }
 
+app.put('books/:bookID', updateBook);
+
+async function updateBook(request, response, next){
+  try {
+    let id = request.params.bookID;
+    let data = request.body;
+
+    const updateBook = await Books.findbyIDAndUpdate(id, data, { new: true, overwrite: true})
+
+    response.status(200).send(updateBook);
+
+  } catch (error) {
+    console.log(error.message);
+    next(error);
+  }
+}
+
 
 app.get('*', (request, response) => {
   response.status(404).send('Not availabe');
