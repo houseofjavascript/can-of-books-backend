@@ -82,6 +82,10 @@ app.delete('/books/:bookID', deleteBooks);
 
 async function deleteBooks(request, response, next) {
   try {
+
+    let id = request.params.bookID;
+    await Books.findByIdAndDelete(id);
+    
     console.log(request.params.bookID)
 
     response.status(200).send('Book Deleted')
