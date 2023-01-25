@@ -10,6 +10,6 @@ const bookSchema = new Schema({
   status: { type: Boolean, required: true },
 });
 
-const BookModel = mongoose.model('cat', bookSchema);
+const BookModel = mongoose.model('book', bookSchema);
 
 module.exports = BookModel;

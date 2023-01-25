@@ -8,10 +8,14 @@ const app = express();
 
 // *** Require in our model ****
 
-const Books = require();
+const Books = require('./Models/books');
 
 // ** Middleware **
 app.use(cors());
+
+// ! dont forget to use middleware to parse json data from request.body
+
+app.use(express.json());
 
 
 // *** BRING IN MONGOOSE ***
@@ -24,7 +28,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('Mongoose is connected');
-
+});
 const PORT = process.env.PORT || 3001;
 
 app.get('/test', (request, response) => {
@@ -41,12 +45,11 @@ app.get('/', (request, response) => {
 
 // ***** ENDPOINT TO GET ALL THE CATS FROM MY DATABASE *****
 
-app.get('/cats', getCats);
+app.get('/cats', getBooks);
 
-async function getCats(request, response, next){
-{
+async function getBooks(request, response, next) {
   try {
-    let allBooks = await Cat.find({}); 
+    let allBooks = await Cat.find({});
     // Model.find({}) - gets all the docs from the database
 
     response.status(200).send(allBooks);
@@ -54,6 +57,38 @@ async function getCats(request, response, next){
   } catch (error) {
     console.log(error.message);
     next(error);
+  }
+}
+
+// ** Endpoint to add a book ///
+app.post('/books', postBooks);
+
+async function postBooks(request, response, next){
+  try {
+    let createdBook = await Books.create(request.body);
+
+    console.log(request.body);
+    response.status(200).send(createdBook);
+  }  catch (error) {
+    console.log(error.message);
+    next(error)
+  }
+}
+
+
+// ENDPOINT TO
+
+app.delete('/books/:bookID', deleteBooks);
+
+async function deleteBooks(request, response, next) {
+  try {
+    console.log(request.params.bookID)
+
+    response.status(200).send('Book Deleted')
+
+  } catch (error) {
+    console.log(error.message);
+    next(error)
   }
 }
 
