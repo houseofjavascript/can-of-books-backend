@@ -9,6 +9,7 @@ const app = express();
 // *** Require in our model ****
 
 const Books = require('./Models/books');
+const verifyUser = require('./auth');
 
 // ** Middleware **
 app.use(cors());
@@ -44,6 +45,10 @@ app.get('/', (request, response) => {
 
 
 // ***** ENDPOINT TO GET ALL THE CATS FROM MY DATABASE *****
+
+
+app.use(verifyUser);
+
 
 app.get('/books', getBooks);
 
