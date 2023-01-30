@@ -45,11 +45,11 @@ app.get('/', (request, response) => {
 
 // ***** ENDPOINT TO GET ALL THE CATS FROM MY DATABASE *****
 
-app.get('/cats', getBooks);
+app.get('/books', getBooks);
 
 async function getBooks(request, response, next) {
   try {
-    let allBooks = await Cat.find({});
+    let allBooks = await Books.find({});
     // Model.find({}) - gets all the docs from the database
 
     response.status(200).send(allBooks);
@@ -70,13 +70,13 @@ async function postBooks(request, response, next){
     console.log(request.body);
     response.status(200).send(createdBook);
   }  catch (error) {
-    console.log(error.message);
+    console.log(error.message); 
     next(error)
   }
 }
 
 
-// ENDPOINT TO
+// ** ENDPOINT TO DELETE A BOOK  **//
 
 app.delete('/books/:bookID', deleteBooks);
 
@@ -96,16 +96,19 @@ async function deleteBooks(request, response, next) {
   }
 }
 
-app.put('books/:bookID', updateBook);
+// ** EndPoint to Update a book by an Identifier ////
+app.put('/books/:bookID', updateMyBook);
 
-async function updateBook(request, response, next){
+async function updateMyBook(request, response, next){
+  console.log('im here');
   try {
     let id = request.params.bookID;
     let data = request.body;
+    console.log('id and data',id,data);
+    
+    const updateMyBook = await Books.findByIdAndUpdate(id, data, { new: true, overwrite: true});
 
-    const updateBook = await Books.findbyIDAndUpdate(id, data, { new: true, overwrite: true})
-
-    response.status(200).send(updateBook);
+    response.status(200).send(updateMyBook);
 
   } catch (error) {
     console.log(error.message);
